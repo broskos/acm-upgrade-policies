@@ -1,0 +1,58 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: policy-olm-4-9-upgrade
+  namespace: openshift-config
+spec:
+  disabled: true
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: stable-4-9-upgrade-policy-update-service
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: operators.coreos.com/v1alpha1
+            kind: CatalogSource
+            metadata:
+              name: redhat-operator-index
+              namespace: openshift-marketplace
+            spec:
+              image: registry.nec.nfvi.localdomain:5000/olm/olm-index-redhat-operator-index:v4.9
+              sourceType: grpc
+
+  remediationAction: enforce
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: rule-olm-4-9-upgrade
+  namespace: openshift-config
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions:
+      - key: name
+        operator: In
+        values:
+          - nec1-nfvi-localdomain
+
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-olm-4-9-upgrade
+  namespace: openshift-config
+placementRef:
+  apiGroup: apps.open-cluster-management.io
+  kind: PlacementRule
+  name: rule-olm-4-9-upgrade
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: policy-olm-4-9-upgrade

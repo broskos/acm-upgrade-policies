@@ -1,0 +1,86 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: image-signature-policy
+  namespace: openshift-config
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: trusted-release-images
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            binaryData:
+              sha256-faf1f5ae9636ef79c6027cd1ca68b0a93607f8ccc12e8e537f8f8bc21d7dfb15: owGbwMvMwMEoOU9/4l9n2UDGtYzJSWLxRQW5xZnpukWphbpeUSYeLuV6SZl5SW77uquVkosySzKTE3OUrBSqlTJzE9NTwayU/OTs1CLd3MS8zLTU4hLdlMx0IAWUUirOSDQyNbNKS0wzTDNNTLU0MzZLTTO3TDYzMDJPTjFMTjSzSDJItDQ2MzBPs0hOTjY0SrVINTUGctIskpKNDFPMU9KSDE2VanUUlEoqC0DWKSWW5OdmJisk5+eVJGbmpRYpAF2bl1hSWpSqBFSVmZKaV5JZUonssKLUtNSi1LxksPbC0sRKvcx8/fyC1LzijMy0EqB0TmpicapuSmqZfn5yAYxvZaJnoWdsplthYRZvZqJUC3JDfkFJZn4eNACSi1KBbikCGRqUmqLgkVii4A80NBhkqEIw0FGZeekKjqUlGfnAYKtUMNAz0DMEGtPJJMrMygAKUHjAc+i08f+PMWeZ/DHa9fijZ4lnr0/bJMbnFc0nzLjGYFKAxNQJUr0FxaucOyw37t1042DJtWNvbhcLz6pr8mGIf/jMPzRth9L7b4r8unIZGTEZMjwnzfdJB1YpFr299fLhvqCzrFXMTNaWfrnbBV4vmnJ/zaJtq7R4BGT/eR0LVNWN+fvpWDyjI89eVuN7Z2W28kwzeTaD9dF+07IlooX6UVMbl/+WjU2JTQtylW1jZXY8luqqpPZtdoNHaGnV5Ixjj4yvn5v+79JM221h7W+3nPglk612OlN7ykX2mTeNmFgU1z3NuVPEturnmpmPosziQi99z9O8dPi/4ee8mGccH29qSnWs++Iod/v7jfbJjzjXcFxpn37kvMvZY5smvlze+fT2xqmps7dq8S+fp5uiXN1t0Jn2Rm4T/5EZlxVKdaMSV8SX5/6OYfGbdePNvWcy0dLyOupXnnfm7s4ouStU6tit8Wv23ien53NKqc54wTT7rNjC7sAExpPG0/b9+Gk4YeK7Hce+7JRMdL0nqbg7N/7hQ6PttV36YbLcdrM2LmYp3qwkG/DN78Kzfbv2ugX1eR5MKzZLWraLI/hBa2Rmveqe7YYCVhnvj0V/rc/QmsHhZRwQXfNadsHU6v3T1tx7Zsna3uN7I0p1VgfPG47GRdzbb0UEL+lcXNyj0Ba05pQmj3BO1SGpK2w9q9q1F7tKvLmY6O1029rprcqyyf9suzYAAA==
+            kind: ConfigMap
+            metadata:
+              labels:
+                release.openshift.io/verification-signatures: ""
+              name: release-image-4.8.36
+              namespace: openshift-config-managed
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            binaryData:
+              sha256-5c551dfad2916d4f718b9e060392fc85e2832232351ecfeac2fbda57c62eee9d: owGbwMvMwMEoOU9/4l9n2UDGtYzJSWLxRQW5xZnpukWphbppkYEpjoF6SZl5SW0FutVKyUWZJZnJiTlKVgrVSpm5iempYFZKfnJ2apFubmJeZlpqcYluSmY6kAJKKRVnJBqZmlmZJpuaGqakJaYYWRqapZikmRtaJFmmGpgZGFsapSVbmKYaWRgbGRkbGZsapianpSYmG6UlpSSamiebGaWmplqmKNXqKCiVVBaArFNKLMnPzUxWSM7PK0nMzEstUgC6Ni+xpLQoVQmoKjMlNa8ks6QS2WFFqWmpRal5yWDthaWJlXqZ+fr5Bal5xRmZaSVA6ZzUxOJU3ZTUMv385AIY38pEz0LPxFC3wsIs3sxEqRbkhvyCksz8PGgAJBelAt1SBDI0KDVFwSOxRMEfaGgwyFCFYKCjMvPSFRxLSzLygcFWqWCgZ6BnCDSmk0mUmZUBFKDwgOeYeob/f80l9TyPvTozbQTtj2fyfmuVSLz9+7gLT4Ktvfd62Yt6+99bBqf2q4u+dDtWLlffvuVxur36p9oUTp/J/q6y0g1uXM8tlwvtvxNh2Jr93KNUdNvB6T+a4p3Set4bT9+euuR/w+b8SOFy58hP0xuUiq2qPxydXrPKU0dY1fb3o4d333Xs3pCabX2Vb9Pp2j/FK+O6zB9OP1u+itXuX9z0qyYzhKxuPvcLqGv4PnPmc27BRNYH+Zt3P6p5um3Hu/2tG3/eu5OfEBkTa7Z+eefl+CsCWiu2vzBoWuvC1DQ5tdHgoa4a7+r2Vc/uG0kufHhj9uuPMr2yArWvhF6JXf/LvvRUroeaU7eClfvLQmPFu/tO1of7pLGsNUv4WmW7mfWJVOECfzHFmAP/DwsE94c4n5za41fy4qmQqf2eg9OyTxoEXFaaeO3K67s2NduOzk2oWtXYnyt2IlXqZ/aarvAv/kpsexWUTgcfue3aderJ1HN6IeGKT48941P9YOzInd+We8FFtq1C9naWd3DSre7f5+feF3YtFWDh+u21eEH2x7d3nl3pnrZe5P06zo9nVfcdq2bV57JS/J+SvVRN3kVKwlHzVoKGVLzfYvZ04++FV+reSUw9deCHzizvnPMS2gw6WZnsid7BTOf2dzc/XHn1vVdi44mu7bYLXb/H3X/SUXQt+WnElBxHhsQTz7VWfb1if5b7wNOzywJ690wEAA==
+            kind: ConfigMap
+            metadata:
+              labels:
+                release.openshift.io/verification-signatures: ""
+              name: release-image-4.8.41
+              namespace: openshift-config-managed
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            binaryData:
+              sha256-2a28b8ebb53d67dd80594421c39e36d9896b1e65cb54af81fbb86ea9ac3bf2d7: owGbwMvMwMEoOU9/4l9n2UDGtYzJSWLxRQW5xZnpukWphbqRmSWF4WV6SZl5SZntYtVKyUWZJZnJiTlKVgrVSpm5iempYFZKfnJ2apFubmJeZlpqcYluSmY6kAJKKRVnJBqZmlkZJRpZJFmkJiWZGqeYmaekWBiYWpqYGBkmG1umGpulWFpYmiUZppqZJieZmiSmWRimJSVZmKUmWiYmGyelGaWYK9XqKCiVVBaArFNKLMnPzUxWSM7PK0nMzEstUgC6Ni+xpLQoVQmoKjMlNa8ks6QS2WFFqWmpRal5yWDthaWJlXqZ+fr5Bal5xRmZaSVA6ZzUxOJU3ZTUMv385AIY38pEz1LP2FC3wsIs3sxEqRbkhvyCksz8PGgAJBelAt1SBDI0KDVFwSOxRMEfaGgwyFCFYKCjMvPSFRxLSzLygcFWqWCgZ6BnCDSmk0mUmZUBFKDwgOfY+Jf/f/iqd4XPdNRTrNUKklZ07Wtt7HbL4Yx8q+Wv8fd7xeEi3pcSixiMZssf/9FYn/4uaNJmHn++V4scN1bHOkzfWmOju7sxfkLlHbaVs6Rf8tw4kPzhmwXvkYMv5zbvXZDf9NdJTuHq/BcPok1ZTyfeqGHafe7pBtEF6wNK5v1/svfv73THcJWwisN7KvZ9vVqc//7mQ7nPy8pn/RYIEP53rW3udlU+7/Lvoaul9AIZEk+zr+Bzijgh97hrFXvDvLM37zqGPWOYU3t/nnPR36Z7Ry/dvSAR9+VK2xPPu1uU5e2PP9QsODR9P7tlQf+/Dk1z/hqrn3XloZLXI+d3ifk7ftm4zvdppLjff4X6vXze4aGZT85/9prTPuubZ8/eLeskuT9c/DV5etyhP3Gr/Rlab1yYHrJbK+1Yq2KDH+sHpfZ3YkftzmfFR6tX1F+y2Pj9a837w9MmVTpYPjsjOH8fv4CI5QHzzXfOzCxz/VDl//Ch/sZ/TX9WzwsvqsgPDVe8kTPJWSfnAkv05LNelw9NfLR8+ZOATwdmqYp4/fJhsYzWEeV0EXZ5tP31hZqSb0ILGQUKw10OP0q4bHN4rYZl/bezr/Yx524MOvtsZyZDXdDp18FaUyUD84s8v95lZr96JP7ojlKb5zp+ufeq/vWdnWO6r3OyyOwek0TPbQc+e5qzS/N9WCYWe0lnFeM6ocfHJ4lOkMqfIlbl/H9X2ScA
+            kind: ConfigMap
+            metadata:
+              labels:
+                release.openshift.io/verification-signatures: ""
+              name: release-image-4.9.31
+              namespace: openshift-config-managed
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            binaryData:
+              sha256-0dc1a4b4d9ea7954987f63e506474a4f0dc55e5f1ea5c1f6f1179e2c09eaffda: owGbwMvMwMEoOU9/4l9n2UDGtYwpSWLxRQW5xZnpukWphboFZf7h/iV6SZl5SfE3DlUrJRdllmQmJ+YoWSlUK2XmJqanglkp+cnZqUW6uYl5mWmpxSW6KZnpQAoopVSckWhkamZlkJJsmGiSZJJimZpobmlqYmlhnmZmnGpqYGZibpJokgaUNzVNNU0zTE00TTZMM0szNDS3TDVKNgCqT0tLSVSq1VFQKqksAFmnlFiSn5uZrJCcn1eSmJmXWqQAdG1eYklpUaoSUFVmSmpeSWZJJbLDilLTUotS85LB2gtLEyv1MvP18wtS84ozMtNKgNI5qYnFqbopqWX6+ckFML6ViZ6hgZ6hoW6FhVm8mYlSLcgR+QUlmfl50BBILkoFOqYIZGpQaoqCR2KJgj/Q1GCQqQrBQFdl5qUrOJaWZOQDw61SwUAPaBzQmE4mUWZWBlCIwkOe4/s3/n/KN3/lc1c4qhZzzGqusizw3W0rc+GtvKLmwlNbJizc3nXZYv/1TeJ88l9OxV313mRRvily3YGZv+Or+XRFzYs3GHoHCf+7UXvhnPupD/GxvuGrb5guv2V27WRxqom3xOyI52lnP+mVsZzkEuf5Ii2uKXAn3SQla8vHox8tv128EPzt3cbJzG3eXTkVi+RMHdYU/klemzJR/kkq0+c4/9OFouqiUkIyl+RFXTf/d+d/7ZRa+2elzba5FlpP+n9Yhpl+zdm7ynfrOdMnMx/e+7ZHd8mPm7cKi679OflsxSmht1UruqpvlbEfYcjWmbrY1PwbT/YJPlUJn7q2vyJzDB9EuqkJMF+rKv5v25mssXlHxJGaM4YJO+5MXdNV197CWjMnUtx4r1PEayELAYn9BjfOcO3YnNB39ZGC0ZSHAh2HTLivKz3pl+TIjdN56K0a9aa92H7e9shI5hk+y6blvbZsS2/tal3XWen4Ys3F3tJs7ZdX36zjS328YodocI7ANGN9bWUN4VXznLIOFB+exvvh+TXGq9ILtYNuztSqLJyzZeL0rOnyXzmMdTIr81cw1izev/lEr/m2fZxb68UucZzI/FHrWrVZL3ntPenk5xp7xRblXn2Q8TnvXszDbIW9ObfS7Fbu2FMjn5+82v9S18nNq77sOBnjq/tOc2/01Mns39afXHP8vmbkOUlXTf612+Snz1K0P2WfdPT52hcA
+            kind: ConfigMap
+            metadata:
+              labels:
+                release.openshift.io/verification-signatures: ""
+              name: release-image-4.10.11
+              namespace: openshift-config-managed
+  remediationAction: enforce
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-image-signature-policy
+  namespace: openshift-config
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions: []
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-image-signature-policy
+  namespace: openshift-config
+placementRef:
+  apiGroup: apps.open-cluster-management.io
+  kind: PlacementRule
+  name: placement-image-signature-policy
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: image-signature-policy

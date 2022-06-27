@@ -1,0 +1,100 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: policy-trust-mgmt-ca
+  namespace: openshift-config
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: policy-trust-mgmt-ca
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: v1
+            data:
+              ca-bundle.crt: |
+                -----BEGIN CERTIFICATE-----
+                MIIDdzCCAl+gAwIBAgIIahNyrGBtCEIwDQYJKoZIhvcNAQELBQAwJjEkMCIGA1UE
+                AwwbaW5ncmVzcy1vcGVyYXRvckAxNjUzMzY3MDc5MB4XDTIyMDUyNDA0MzkyMloX
+                DTI0MDUyMzA0MzkyM1owKzEpMCcGA1UEAwwgKi5hcHBzLnNoYXNoYW5rLm5mdmku
+                bG9jYWxkb21haW4wggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQDX0VXQ
+                j2E6B+fKFdsS6kgipy+B3QTKQhxMlYM8TzEXRd+RpEWgELbpaf6sY1JnIFwsWCx5
+                KvJyRuWJjnuxLJeRqUCeyYTXuCz84GJfQHC+mF/nUkgwXfmAGemCKh4ahyDB37n7
+                MMqDWF1SugVRvkfRAoh2PLMsj1bzftdldwzye/F/wD41oEOut0ppiq5kEgJdpGtw
+                nMeIDr4heUd7x2QDIxakJ40NWhm9lxpL4IocxNjwfvzo81UlJBulMSr35vOkGRdM
+                TILTjXK1ZNKRSkm9W2FMLNmWYFWuoduhkLI2Q3Ft92vqvzy1q9vV/gUQ/EmBvgbz
+                GUDR2mY+7JiyJkyZAgMBAAGjgaMwgaAwDgYDVR0PAQH/BAQDAgWgMBMGA1UdJQQM
+                MAoGCCsGAQUFBwMBMAwGA1UdEwEB/wQCMAAwHQYDVR0OBBYEFJOv5rs4TAu5kG4H
+                BK8c1mM1m7IvMB8GA1UdIwQYMBaAFEFmFJwn8gSlsR6dY+8R/238bYMcMCsGA1Ud
+                EQQkMCKCICouYXBwcy5zaGFzaGFuay5uZnZpLmxvY2FsZG9tYWluMA0GCSqGSIb3
+                DQEBCwUAA4IBAQApV/t6yXssX8bKhr/yWVpiYC+qLCSP2pDk1ISrwaR+XGuSFue0
+                BKuYTAc+sw6wiJ8nW5+4LAxd8+PTzqHuyPSP5tlh6uxpDVHa6fYOlt30Ei5xeXia
+                CNiFg9Xq4isNk7DNcbBBgaINuB8ywaQNKQPxRZavKddEbgSn2Zb3M62uJClDYkRZ
+                4AcZP3BY1WGLQGidd9mo6GpU1n4oeI/+z4Q4amp7xDKGwvoI6Iet68A3EQD5wRpi
+                zP5OuqvIJFWpnSGZ6fIYKWw874KFZthNoJ8u11Xy6F8qrEuwHUAKlgU94/YO+apy
+                zlxvo6fgRa+K5MSWEvtnKcJ1PVqPY4c9UmTt
+                -----END CERTIFICATE-----
+                -----BEGIN CERTIFICATE-----
+                MIIDDDCCAfSgAwIBAgIBATANBgkqhkiG9w0BAQsFADAmMSQwIgYDVQQDDBtpbmdy
+                ZXNzLW9wZXJhdG9yQDE2NTMzNjcwNzkwHhcNMjIwNTI0MDQzNzU4WhcNMjQwNTIz
+                MDQzNzU5WjAmMSQwIgYDVQQDDBtpbmdyZXNzLW9wZXJhdG9yQDE2NTMzNjcwNzkw
+                ggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC/MJowTUWMRMa/JFC7EZjN
+                aDrZRzZZcdhEZD5s3EKDG3xUy9HmXsmQMOTEWq2exZSc3QNv61jwlgGbM4GAhA2g
+                c5baMuayg8co6B/4kRCVkGVyZ5+1o+rJCVma9HJd3U8RcQSAF+So5Eb+Be1SwX+d
+                oBCVfrJL5If8dW+VHUcvM1C+YVGPBa3ulKphZyUbmze9aAyF3ymQLVGgQa7SpCCk
+                GT/JIsmStrX5XTpy+sSHG4aQVL54CFeceYzQZEVqUH0q4ZD86QUyLYzx8nbCsuuU
+                eLMZfiCjg2jCDtGEb0Te9xVFHmxFzSNnFKPLoU54ggI6578y9jo1mUZq/CcGEaqn
+                AgMBAAGjRTBDMA4GA1UdDwEB/wQEAwICpDASBgNVHRMBAf8ECDAGAQH/AgEAMB0G
+                A1UdDgQWBBRBZhScJ/IEpbEenWPvEf9t/G2DHDANBgkqhkiG9w0BAQsFAAOCAQEA
+                V8qspUubUeoC7bgIM//ABMeIjmNoHSoTmP3jlbUzdgs/MBmI2v8IW7bMKZYCKOry
+                1N67azJgv/i0vyKockE8QufS8+iiNCBMs5CoI94P6tiQqXgPwDbMI9iG5sdBfRDo
+                kMD6VPxobMpXOZSPPZqb/oF8wjx6c3ppOcKSCTNTe2hgRCwuPct3Xx7posQpmUA0
+                /q0Ze27fJmEbkxa0NwiQBti+Bogt1kKfiXp2q39COidMltbFKU3DaoOjSLWDP67V
+                /gA8QayK0x+eq1It7h5G5stn6wHI5iQHNU7ToOHbNcfCPj7dyatka/jOKjdHETGq
+                heoyS6MLXPgJoVqLHkNbKg==
+                -----END CERTIFICATE-----
+            kind: ConfigMap
+            metadata:
+              name: mgmt-ca-bundle
+              namespace: openshift-config
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: config.openshift.io/v1
+            kind: Proxy
+            metadata:
+              name: cluster
+            spec:
+              trustedCA:
+                name: mgmt-ca-bundle
+  remediationAction: enforce
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-trust-mgmt-ca
+  namespace: openshift-config
+placementRef:
+  apiGroup: apps.open-cluster-management.io
+  kind: PlacementRule
+  name: placement-trust-mgmt-ca
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: policy-trust-mgmt-ca
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-trust-mgmt-ca
+  namespace: openshift-config
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions: []

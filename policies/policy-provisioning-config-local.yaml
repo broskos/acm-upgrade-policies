@@ -1,0 +1,55 @@
+apiVersion: policy.open-cluster-management.io/v1
+kind: Policy
+metadata:
+  name: policy-provisioning-config-local
+  namespace: openshift-config
+spec:
+  disabled: false
+  policy-templates:
+  - objectDefinition:
+      apiVersion: policy.open-cluster-management.io/v1
+      kind: ConfigurationPolicy
+      metadata:
+        name: set-proxy-trusted-ca
+      spec:
+        object-templates:
+        - complianceType: musthave
+          objectDefinition:
+            apiVersion: metal3.io/v1alpha1
+            kind: Provisioning
+            metadata:
+              annotations:
+                kubectl.kubernetes.io/last-applied-configuration: |
+                  {"apiVersion":"metal3.io/v1alpha1","kind":"Provisioning","metadata":{"annotations":{},"name":"provisioning-configuration"},"spec":{"preProvisioningOSDownloadURLs":{},"provisioningNetwork":"Disabled","provisioningOSDownloadURL":"http://172.90.12.160/discovery/rhcos-4.8.14-x86_64-openstack.x86_64.qcow2.gz?sha256=99da4ed945b391d452e55a3a7809c799e4c74f69acbee1ecaec78f368c4e369e","watchAllNamespaces":true}}
+              name: provisioning-configuration
+            spec:
+              provisioningNetwork: Disabled
+              provisioningOSDownloadURL: http://172.90.12.160/discovery/rhcos-4.8.14-x86_64-openstack.x86_64.qcow2.gz?sha256=99da4ed945b391d452e55a3a7809c799e4c74f69acbee1ecaec78f368c4e369e
+              watchAllNamespaces: true
+  remediationAction: enforce
+---
+apiVersion: apps.open-cluster-management.io/v1
+kind: PlacementRule
+metadata:
+  name: placement-policy-provisioning-config-local
+  namespace: openshift-config
+spec:
+  clusterConditions:
+  - status: "True"
+    type: ManagedClusterConditionAvailable
+  clusterSelector:
+    matchExpressions: []
+---
+apiVersion: policy.open-cluster-management.io/v1
+kind: PlacementBinding
+metadata:
+  name: binding-policy-provisioning-config-local
+  namespace: openshift-config
+placementRef:
+  apiGroup: apps.open-cluster-management.io
+  kind: PlacementRule
+  name: placement-policy-provisioning-config-local
+subjects:
+- apiGroup: policy.open-cluster-management.io
+  kind: Policy
+  name: policy-provisioning-config-local
